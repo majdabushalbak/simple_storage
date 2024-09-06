@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~bootstrap/dist/css/bootstrap.min.css";
+:root {
+    --gold: #f2bb3d;
+    --gold-lite: hsl(42, 87%, 63%);
+}
+
+body {
+    font-family: "Readex Pro", Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    background-color: rgb(0, 0, 0);
+    color: #eaeaea;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    justify-content: center;
+    /* Center items vertically */
+    align-items: center;
+    /* Center items horizontally */
+}
+
+.footer-links {
+    margin-bottom: 10px;
+    /* Space between links and text */
+}
+
+.footer-links a {
+    color: #eaeaea;
+    margin: 0 10px;
+    /* Space between links */
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #f9f9f9;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    /* Slightly smaller text for the footer */
+}
+
+/* Container Padding */
+.container {
+    flex: 1;
+    padding-top: 70px;
+    padding-bottom: 120px;
+    text-align: right;
+    /* Align text in the container to the right */
+}
+
+footer .social-media-links {
+    margin: 10px 0;
+    /* Space above and below the social media links */
+}
+
+footer .social-media-links a {
+    color: #eaeaea;
+    font-size: 1.5rem;
+    /* Adjust the size of the icons */
+    text-decoration: none;
+}
+
+footer .social-media-links a:hover {
+    color: #f9f9f9;
+}
+
+/* Logo Image */
+.navbar-brand img {
+    max-height: 15dvh;
+    min-height: 70px;
+    /* Adjust the logo size */
+}
+ul.navbar-nav {
+    width: 50%;
+}
+nav {
+    background-color: #000000;
+}
+
+.nav-link {
+    height: 10dvh;
+    min-height: 70px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffffff;
+    box-sizing: border-box;
+    border: none;
+    transition-property: border;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
+.nav-link:hover {
+    box-sizing: border-box;
+    color: #ffffff;
+    border-width: 0 0 0.5rem 0;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+.page-container {
+    flex: 1;
+}
+.corner {
+    border-radius: 0;
+}
+.btn-gold {
+    border-radius: 0;
+    color: white;
+    background-color: var(--gold);
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
+.btn-gold:hover {
+    background-color: var(--gold-lite);
+    color: white;
+}

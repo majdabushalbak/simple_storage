@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -23,13 +22,26 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->authenticate();
+        // Validate the 'name' and 'password' fields instead of 'email'
+        $request->validate([
+            'name' => ['required', 'string'],
+            'password' => ['required'],
+        ]);
 
-        $request->session()->regenerate();
+        // Attempt authentication using 'name' and 'password'
+        if (Auth::attempt($request->only('name', 'password'))) {
+            $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            // Redirect to a custom route after login (e.g., 'products.index')
+            return redirect()->intended('products');
+        }
+
+        // Return errors if credentials do not match
+        return back()->withErrors([
+            'name' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     /**

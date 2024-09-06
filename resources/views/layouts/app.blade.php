@@ -1,36 +1,98 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="ar" dir="rtl">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'الصفحة الرئيسية - مشروع Laravel')</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
+    <link href="{{   asset('css/main.css') }}" rel="stylesheet">
+</head>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+<body>
+    <nav class="navbar navbar-expand-lg pb-0" data-bs-theme="dark">
+        <div class="container-fluid align-items-end">
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    @auth
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-link nav-link">تسجيل الخروج</button>
+                        </form>
+                        </li>
+                    @else
+
+                    @endauth
+                </ul>
+                <ul class="navbar-nav ms-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">home</a>
+                    </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.create') }}">add product</a>
+                        </li>
+
+
+                </ul>
+            </div>
         </div>
-    </body>
+    </nav>
+
+    {{-- page content--}}
+    <div class="page-container  mx-4 mx-lg-5 mt-5">
+        @yield('content')
+    </div>
+
+
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        var availableTags = [];
+
+        $.ajax({
+    method: "GET",
+    url: "/product-list",
+    success: function(response) {
+        $("#product-search").autocomplete({
+            source: response
+        });
+    },
+    error: function(xhr, status, error) {
+        console.error("AJAX Error:", status, error);
+    }
+});
+
+
+function startAutoComplete(availableTags) {
+    $("#product-search").autocomplete({
+        source: availableTags
+    });
+}
+
+        </script>
+</body>
+
 </html>
