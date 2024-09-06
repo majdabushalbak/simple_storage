@@ -140,4 +140,21 @@ class ProductController extends Controller
 return $data;
     }
 
+
+    public function updateQuantity(Request $request, Product $product)
+{
+    // Validate the quantity input
+    $request->validate([
+        'quantity' => 'required|integer'
+    ]);
+
+    // Update the product's quantity
+    $product->quantity = $request->input('quantity');
+    $product->save();
+
+    return response()->json(['message' => 'Quantity updated successfully', 'quantity' => $product->quantity]);
+}
+
+
+
 }
