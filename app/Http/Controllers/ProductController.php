@@ -155,6 +155,16 @@ return $data;
     return response()->json(['message' => 'Quantity updated successfully', 'quantity' => $product->quantity]);
 }
 
+public function getTable($index)
+{
+    $products = Product::all();
+    $chunks = $products->chunk(20);
 
+    if (isset($chunks[$index])) {
+        return view('products.table', ['products' => $chunks[$index]]);
+    } else {
+        return response('Table not found', 404);
+    }
+}
 
 }

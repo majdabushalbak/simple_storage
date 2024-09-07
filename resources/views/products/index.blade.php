@@ -33,40 +33,41 @@
             </div>
         @endif
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>اسم القطعة</th>
-                    <th>الوصف</th>
-                    <th>الكمية</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($products as $product)
-                    <tr>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->description }}</td>
-                        <td>{{ $product->quantity }}</td>
-                        <td>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirmDelete()">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+        @php
+            // Chunk products into groups of 20
+            $chunks = $products->chunk(20);
+        @endphp
 
-                            <script>
-                                function confirmDelete() {
-                                    return confirm("Are you sure you want to delete this product?");
-                                }
-                            </script>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+</div>
+@for ($i = 0; $i < $chunks->count(); $i++)
+
+<button class="btn btn-primary mt-4" onclick="loadTable({{ $i }})">{{ $i + 1 }}</button>
+@endfor
+       <!-- Table Container -->
+       <div id="table-container">
+        <!-- Initial table content -->
+        @include('products.table', ['products' => $chunks->first()])
+
     </div>
+</div>
+
+<script>
+    function loadTable(index) {
+        const tableContainer = document.getElementById('table-container');
+
+        fetch(`{{ url('products/table/') }}/${index}`)
+            .then(response => response.text())
+            .then(html => {
+                tableContainer.innerHTML = html;
+            })
+            .catch(error => console.error('Error loading table:', error));
+    }
+</script>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this product?");
+        }
+    </script>
 @endsection
 
 @section('scripts')
@@ -76,37 +77,35 @@
         const suggestionsList = document.getElementById('suggestions');
 
         searchInput.addEventListener('input', function() {
-    const query = this.value;
+            const query = this.value;
 
-    if (query.length > 0) {
-        fetch(`{{ route('products.search') }}?query=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Received data:', data); // Check this log
+            if (query.length > 0) {
+                fetch(`{{ route('products.search') }}?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        suggestionsList.innerHTML = '';
 
-                suggestionsList.innerHTML = '';
-
-                if (data.length > 0) {
-                    suggestionsList.style.display = 'block';
-                    data.forEach(product => {
-                        const li = document.createElement('li');
-                        li.classList.add('dropdown-item');
-                        li.textContent = product;
-                        li.addEventListener('click', function() {
-                            searchInput.value = this.textContent;
+                        if (data.length > 0) {
+                            suggestionsList.style.display = 'block';
+                            data.forEach(product => {
+                                const li = document.createElement('li');
+                                li.classList.add('dropdown-item');
+                                li.textContent = product;
+                                li.addEventListener('click', function() {
+                                    searchInput.value = this.textContent;
+                                    suggestionsList.style.display = 'none';
+                                });
+                                suggestionsList.appendChild(li);
+                            });
+                        } else {
                             suggestionsList.style.display = 'none';
-                        });
-                        suggestionsList.appendChild(li);
-                    });
-                } else {
-                    suggestionsList.style.display = 'none';
-                }
-            })
-            .catch(error => console.error('Error fetching products:', error));
-    } else {
-        suggestionsList.style.display = 'none';
-    }
-});
+                        }
+                    })
+                    .catch(error => console.error('Error fetching products:', error));
+            } else {
+                suggestionsList.style.display = 'none';
+            }
+        });
 
         document.addEventListener('click', function(e) {
             if (!suggestionsList.contains(e.target) && e.target !== searchInput) {

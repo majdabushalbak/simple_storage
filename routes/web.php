@@ -40,7 +40,7 @@ Route::middleware('auth.custom')->group(function () {
     Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::get('/product-list', [ProductController::class, 'list'])->name('products.list');
     Route::post('/products/{product}/update-quantity', [ProductController::class, 'updateQuantity'])->name('products.updateQuantity');
-
+    Route::get('products/table/{index}', [ProductController::class, 'getTable']);
 });
 
 require __DIR__.'/auth.php';
