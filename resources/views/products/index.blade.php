@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-0">
-        <h1 class="text-center">Search Products</h1>
+        <h1 class="text-center">البحث عن قطعة</h1>
 
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">

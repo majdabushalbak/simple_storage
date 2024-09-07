@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'الصفحة الرئيسية - مشروع Laravel')</title>
+    <title dir="rtl">@yield('title', 'الصفحة الرئيسية')</title>
+    <link rel="icon"  href="Logo.svg">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -32,7 +33,7 @@
 
                         <form method="POST" action="{{ route('logout') }}" class="d-inline">
                             @csrf
-                            <button type="submit" class="btn btn-link nav-link">تسجيل الخروج</button>
+                            <button type="submit" class="btn btn-danger">تسجيل الخروج</button>
                         </form>
                         </li>
                     @else
@@ -41,12 +42,9 @@
                 </ul>
                 <ul class="navbar-nav ms-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">home</a>
+                        <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
                     </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products.create') }}">add product</a>
-                        </li>
 
 
                 </ul>
