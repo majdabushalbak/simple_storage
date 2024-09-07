@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container py-0">
-        
+        <h1 class="text-center">Search Products</h1>
 
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">
             <div class="input-group" style="max-width: 500px; position: relative;">
-                <input type="search" name="search" id="product-search" class="form-control" placeholder="ابحث عن قطعة ..." autocomplete="off">
-                <button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="search" name="search" id="product-search" class="form-control" placeholder="Search by product name" autocomplete="off">
+                <button type="submit" class="btn btn-primary">Search</button>
 
                 <!-- Suggestions dropdown -->
                 <ul id="suggestions" class="dropdown-menu w-100" style="display: none;">
@@ -16,15 +16,8 @@
                 </ul>
             </div>
         </form>
-        {{-- <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Create New Product</a> --}}
-        <!-- Rest of your table and other HTML content -->
-
-        
-            <a class="btn btn-dark" href="{{ route('products.create') }}">إضافة قطعة</a>
-        
     </div>
-    <div class="container">
-        
+    <div class>
 
 
         @if(session('success'))
@@ -34,14 +27,14 @@
         @endif
 
         @php
-            // Chunk products into groups of 20
-            $chunks = $products->chunk(20);
+            // Chunk products into groups of 50
+            $chunks = $products->chunk(50);
         @endphp
 
 </div>
 @for ($i = 0; $i < $chunks->count(); $i++)
 
-<button class="btn btn-primary mt-4" onclick="loadTable({{ $i }})">{{ $i + 1 }}</button>
+<button class="btn btn-primary mt-" onclick="loadTable({{ $i }})">{{ $i + 1 }}</button>
 @endfor
        <!-- Table Container -->
        <div id="table-container">
