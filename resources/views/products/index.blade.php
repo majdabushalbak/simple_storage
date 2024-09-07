@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container py-0">
-        <h1 class="text-center">البحث عن قطعة</h1>
+        
 
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">
             <div class="input-group" style="max-width: 500px; position: relative;">
-                <input type="search" name="search" id="product-search" class="form-control" placeholder="Search by product name" autocomplete="off">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <input type="search" name="search" id="product-search" class="form-control" placeholder="ابحث عن قطعة ..." autocomplete="off">
+                <button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 <!-- Suggestions dropdown -->
                 <ul id="suggestions" class="dropdown-menu w-100" style="display: none;">
@@ -18,9 +18,13 @@
         </form>
         {{-- <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Create New Product</a> --}}
         <!-- Rest of your table and other HTML content -->
+
+        
+            <a class="btn btn-dark" href="{{ route('products.create') }}">إضافة قطعة</a>
+        
     </div>
     <div class="container">
-        <h1>All Products</h1>
+        
 
 
         @if(session('success'))
@@ -32,10 +36,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Actions</th>
+                    <th>اسم القطعة</th>
+                    <th>الوصف</th>
+                    <th>الكمية</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

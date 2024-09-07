@@ -41,6 +41,10 @@
                     @endauth
                 </ul>
                 <ul class="navbar-nav ms-0">
+                    <a class="navbar-brand d-flex align-items-center mb-5 mb-xl-0" href="{{ route('products.index') }}">
+                        <img src="{{ URL('Logo.svg') }}" alt="Logo"/>
+                        
+                    </a>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
                     </li>
