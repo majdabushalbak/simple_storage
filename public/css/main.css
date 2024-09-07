@@ -1,6 +1,6 @@
 :root {
-    --gold: #f2bb3d;
-    --gold-lite: hsl(42, 87%, 70%);
+    --gold: hsl(342, 81%, 48%);
+    --gold-lite: hsl(342, 81%, 60%);
 }
 
 body {
@@ -145,4 +145,13 @@ li .user:hover {
 
 ul.dropdown-menu {
     left: -32px !important;
+}
+
+td,
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+button {
+    border-radius: 0 !important;
 }

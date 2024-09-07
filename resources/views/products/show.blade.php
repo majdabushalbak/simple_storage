@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+<title dir="rtl">@yield('title', 'show')</title>
+    
 @section('content')
     <div class="container">
         <h1>{{ $product->name }}</h1>

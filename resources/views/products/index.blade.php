@@ -1,14 +1,17 @@
 @extends('layouts.app')
 <script src="/js/slider-script.js" defer></script>
 @section('content')
+<a href="{{ route('products.create') }}" class="btn btn-dark corner m-4 py-3 px-4">
+   إضافة قطعة
+</a>
     <div class="container py-0">
-        <h1 class="text-center">Search Products</h1>
+       
 
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">
             <div class="input-group" style="max-width: 500px; position: relative;">
-                <input type="search" name="search" id="product-search" class="form-control" placeholder="Search by product name" autocomplete="off">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <input type="search" style="border-radius: 0; outline: none !important;" name="search" id="product-search" class="form-control" placeholder="إبحث عن قطعة ..." autocomplete="off">
+                <button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 <!-- Suggestions dropdown -->
                 <ul id="suggestions" class="dropdown-menu w-100" style="display: none;">
@@ -35,7 +38,7 @@
 </div>
 
 
-<div class="wrapper" role="group" aria-label="Categories">
+<div class="wrapper my-5" role="group" aria-label="Categories">
     
     <div class="icon"> <i id="left" class="fa-solid fa-angle-left"></i></div>
 

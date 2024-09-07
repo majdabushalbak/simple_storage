@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title dir="rtl">@yield('title', 'الصفحة الرئيسية')</title>
-    <link rel="icon"  href="Logo.svg">
+    <link rel="icon" href="{{ asset('Logo.svg') }}" type="image/x-icon">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -29,7 +30,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ">
                     @auth
 
                         <form method="POST" action="{{ route('logout') }}" class="d-inline">
@@ -41,9 +42,9 @@
 
                     @endauth
                 </ul>
-                <ul class="navbar-nav ms-0">
-                    <a class="navbar-brand d-flex align-items-center mb-5 mb-xl-0" href="{{ route('products.index') }}">
-                        <img src="{{ URL('Logo.svg') }}" alt="Logo"/>
+                <ul class="navbar-nav mx-auto d-flex align-items-end">
+                    <a class="navbar-brand " href="{{ route('products.index') }}">
+                        <img class="mx-4" src="{{ URL('Logo.svg') }}" alt="Logo"/>
                         
                     </a>
                     <li class="nav-item">

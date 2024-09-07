@@ -14,13 +14,22 @@
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td >
-                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">عرض</a>
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">تعديل</a>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirmDelete()">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">حذف</button>
-                    </form>
+                    <div class="dropdown">
+                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu text-center">
+                            <a href="{{ route('products.show', $product->id) }}" class=" dropdown-item">عرض</a>
+                            <a href="{{ route('products.edit', $product->id) }}" class=" dropdown-item">تعديل</a>
+                            <form action="{{ route('products.destroy', $product->id) }}" method="POST"  onsubmit="return confirmDelete()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class=" dropdown-item text-danger">حذف</button>
+                            </form>
+                        
+                        </ul>
+                      </div>
+                   
                 </td>
             </tr>
         @endforeach
