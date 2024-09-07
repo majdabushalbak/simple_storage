@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped mb-5">
     <thead>
         <tr>
             <th>اسم القطعة</th>

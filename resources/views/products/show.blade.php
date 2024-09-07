@@ -39,24 +39,33 @@
 
     <script>
         function updateQuantity(change) {
-            let currentQuantity = parseInt(document.getElementById('product-quantity').innerText);
+    let quantityElement = document.getElementById('product-quantity');
+    let currentQuantity = parseInt(quantityElement.innerText);
 
-            fetch(`/products/{{ $product->id }}/update-quantity`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    quantity: currentQuantity + change
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Update the quantity on the page
-                document.getElementById('product-quantity').innerText = data.quantity;
-            })
-            .catch(error => console.error('Error:', error));
-        }
+    // Check if the current quantity is 0 and the change is -1
+    if (currentQuantity === 0 && change < 0) {
+        // Prevent further reduction if quantity is already 0
+        return;
+    }
+
+    // Update the quantity if the above condition is not met
+    fetch(`/products/{{ $product->id }}/update-quantity`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            quantity: currentQuantity + change
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update the quantity on the page
+        quantityElement.innerText = data.quantity;
+    })
+    .catch(error => console.error('Error:', error));
+}
+
     </script>
 @endsection
