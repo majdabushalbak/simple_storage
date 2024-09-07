@@ -1,24 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import "~bootstrap/dist/css/bootstrap.min.css";
 :root {
     --gold: #f2bb3d;
-    --gold-lite: hsl(42, 87%, 63%);
+    --gold-lite: hsl(42, 87%, 70%);
 }
 
 body {
     font-family: "Readex Pro", Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 footer {
+    min-height: 50dvh;
     background-color: rgb(0, 0, 0);
     color: #eaeaea;
     padding: 20px 0;
     text-align: center;
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     /* Stack items vertically */
@@ -49,23 +47,22 @@ footer {
     /* Slightly smaller text for the footer */
 }
 
-/* Container Padding */
-.container {
-    flex: 1;
-    padding-top: 70px;
-    padding-bottom: 120px;
-    text-align: right;
-    /* Align text in the container to the right */
+span.copy-right {
+    opacity: 0.35;
+    font-size: 0.8rem;
 }
 
 footer .social-media-links {
-    margin: 10px 0;
     /* Space above and below the social media links */
+}
+footer .text {
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 footer .social-media-links a {
     color: #eaeaea;
-    font-size: 1.5rem;
+    font-size: 2rem;
     /* Adjust the size of the icons */
     text-decoration: none;
 }
@@ -81,7 +78,7 @@ footer .social-media-links a:hover {
     /* Adjust the logo size */
 }
 ul.navbar-nav {
-    width: 50%;
+    width: auto;
 }
 nav {
     background-color: #000000;
@@ -90,7 +87,9 @@ nav {
 .nav-link {
     height: 10dvh;
     min-height: 70px;
+
     font-size: 1.3rem;
+    white-space: nowrap;
     font-weight: bold;
     color: #ffffff;
     box-sizing: border-box;
@@ -108,8 +107,19 @@ nav {
     border-color: #ffffff;
 }
 
+button.navbar-toggler {
+    box-shadow: none !important;
+    border: none;
+}
+button.navbar-toggler span {
+    color: #ffffff !important;
+    font-size: 2.5rem;
+}
+button.navbar-toggler span:hover {
+    color: var(--gold) !important;
+}
 .page-container {
-    flex: 1;
+    min-height: 70dvh;
 }
 .corner {
     border-radius: 0;
@@ -118,12 +128,21 @@ nav {
     border-radius: 0;
     color: white;
     background-color: var(--gold);
-    transition-property: background-color;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in;
 }
 
 .btn-gold:hover {
-    background-color: var(--gold-lite);
     color: white;
+    background-color: var(--gold-lite);
+}
+
+li .user {
+    cursor: pointer;
+    color: #ffffff;
+}
+li .user:hover {
+    color: var(--gold);
+}
+
+ul.dropdown-menu {
+    left: -32px !important;
 }

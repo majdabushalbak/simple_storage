@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<script src="/js/slider-script.js" defer></script>
 @section('content')
     <div class="container py-0">
         
@@ -23,7 +23,7 @@
             <a class="btn btn-dark" href="{{ route('products.create') }}">إضافة قطعة</a>
         
     </div>
-    <div class="container">
+    <div >
         
 
 
@@ -35,14 +35,34 @@
 
         @php
             // Chunk products into groups of 20
-            $chunks = $products->chunk(20);
+            $chunks = $products->chunk(50);
         @endphp
 
 </div>
-@for ($i = 0; $i < $chunks->count(); $i++)
 
-<button class="btn btn-primary mt-4" onclick="loadTable({{ $i }})">{{ $i + 1 }}</button>
+
+<div class="wrapper" role="group" aria-label="Categories">
+    
+    <div class="icon"> <i id="left" class="fa-solid fa-angle-left"></i></div>
+
+
+ <ul class="tabs-box">
+        <!-- All Products Button -->
+       
+    
+        <!-- Category Buttons -->
+       @for ($i = 0; $i < $chunks->count(); $i++)
+
+<i class="  tab" onclick="loadTable({{ $i }})">{{ $i + 1 }}</i>
 @endfor
+    
+ </ul>
+
+    <div class="icon"> <i id="right" class="fa-solid fa-angle-right"></i></div>
+   
+</div>
+
+
        <!-- Table Container -->
        <div id="table-container">
         <!-- Initial table content -->

@@ -11,10 +11,10 @@
             </div>
         @endif
 
-        <p><strong>Description:</strong> {{ $product->description }}</p>
+        <p><strong>الوصف:</strong> {{ $product->description }}</p>
 
         <!-- Display and update quantity dynamically -->
-        <p><strong>Quantity:</strong> <span id="product-quantity">{{ $product->quantity }}</span></p>
+        <p><strong>الكمية:</strong> <span id="product-quantity">{{ $product->quantity }}</span></p>
 
         <div class="mb-3">
             <button onclick="updateQuantity(1)" class="btn btn-success">+</button>
@@ -27,13 +27,13 @@
 
         </div>
 
-        <a href="{{ route('products.index') }}" class="btn btn-secondary">Back to Products</a>
-        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Edit Product</a>
+        <a href="{{ route('products.index') }}" class="btn btn-secondary">عودة <i class="fa-solid fa-backward"></i></a>
+        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">تعديل</a>
 
         <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this product?');">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete Product</button>
+            <button type="submit" class="btn btn-danger">حذف</button>
         </form>
     </div>
 
