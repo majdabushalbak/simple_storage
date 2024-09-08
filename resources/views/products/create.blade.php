@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Create New Product</h1>
+        <h1>اضافة فطعة جديد</h1>
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -18,26 +18,26 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label">Product Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                <label for="name" class="form-label">الاسم</label>
+                <input type="text" class="form-control" id="name" name="الاسم" value="{{ old('name') }}">
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+                <label for="description" class="form-label">الوصف</label>
+                <textarea class="form-control" id="description" name="الوصف">{{ old('description') }}</textarea>
             </div>
 
             <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}">
+                <label for="quantity" class="form-label">الكمية</label>
+                <input type="number" class="form-control" id="quantity" name="الكمية" value="{{ old('quantity') }}">
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Product Image</label>
+                <label for="image" class="form-label">الصورة</label>
                 <input type="file" class="form-control" id="image" name="image">
             </div>
 
-            <button type="submit" class="btn btn-success">Create Product</button>
+            <button type="submit" class="btn btn-success">اضافة فطعة</button>
         </form>
     </div>
 @endsection
