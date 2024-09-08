@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title dir="rtl">@yield('title', 'الصفحة الرئيسية')</title>
     <link rel="icon" href="{{ asset('Logo.svg') }}" type="image/x-icon">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -45,7 +45,7 @@
                 <ul class="navbar-nav mx-auto d-flex align-items-end">
                     <a class="navbar-brand " href="{{ route('products.index') }}">
                         <img class="mx-4" src="{{ URL('Logo.svg') }}" alt="Logo"/>
-                        
+
                     </a>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>

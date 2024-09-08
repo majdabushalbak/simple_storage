@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <title dir="rtl">@yield('title', 'show')</title>
-    
+
 @section('content')
     <div class="container">
         <h1>{{ $product->name }}</h1>
@@ -21,9 +21,9 @@
             <button onclick="updateQuantity(1)" class="btn btn-success">+</button>
 
 
-            @if($product->quantity>0)
+
             <button onclick="updateQuantity(-1)" class="btn btn-danger">-</button>
-@endif
+
 
 
         </div>

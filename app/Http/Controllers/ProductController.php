@@ -88,16 +88,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Validate the request data
+        // Validate the request data, including the image
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'quantity' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
         ]);
 
-        // Find the product by its ID and update it with the validated data
+        // Find the product by its ID
         $product = Product::findOrFail($id);
-        $product->update($validatedData);
+
+        // Update the product details
+        $product->name = $validatedData['name'];
+        $product->description = $validatedData['description'];
+        $product->quantity = $validatedData['quantity'];
+
+        // Check if a new image is uploaded
+        if ($request->hasFile('image')) {
+            // Store the new image
+            $imagePath = $request->file('image')->store('images', 'public');
+
+            // Delete the old image if necessary
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+
+            // Update the product with the new image path
+            $product->image = $imagePath;
+        }
+
+        // Save the product changes
+        $product->save();
 
         // Redirect to the product show page with a success message
         return redirect()->route('products.show', $product->id)->with('success', 'Product updated successfully.');

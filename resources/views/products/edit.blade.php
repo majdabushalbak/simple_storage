@@ -14,7 +14,8 @@
             </div>
         @endif
 
-        <form action="{{ route('products.update', $product->id) }}" method="POST">
+        <!-- Add enctype to handle file uploads -->
+        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -27,7 +28,6 @@
                 <label for="description" class="form-label">الوصف</label>
                 <textarea class="form-control" id="description" name="description">{{ old('description', $product->description) }}</textarea>
             </div>
-
 
             <div class="mb-3">
                 <label for="quantity" class="form-label">الكمية</label>
