@@ -9,13 +9,15 @@
     </thead>
     <tbody>
         @foreach($products as $product)
-            <tr>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->description }}</td>
-                <td>{{ $product->quantity }}</td>
+            <tr  >
+               
+                    <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->name }}</td>
+                    <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->description }}</td>
+                    <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->quantity }}</td>
+               
                 <td >
                     <div class="dropdown">
-                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="dropDownBtn  " style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                         <ul class="dropdown-menu text-center">

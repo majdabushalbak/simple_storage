@@ -1,4 +1,5 @@
 const tabsBox = document.querySelector(".tabs-box");
+const allTabs = document.querySelectorAll(".tab");
 const arrowIcon = document.querySelectorAll(".icon i");
 let isDragging = false;
 
@@ -20,6 +21,12 @@ arrowIcon.forEach((icon) => {
     });
 });
 
+allTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+        tabsBox.querySelector(".active").classList.remove("active");
+        tab.classList.add("active");
+    });
+});
 const dragging = (e) => {
     if (!isDragging) return;
     tabsBox.classList.add("dragging");

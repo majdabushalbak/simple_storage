@@ -49,8 +49,11 @@
     
         <!-- Category Buttons -->
        @for ($i = 0; $i < $chunks->count(); $i++)
-
-<i class="  tab" onclick="loadTable({{ $i }})">{{ $i + 1 }}</i>
+@if ($i==0)
+<i class="  tab active" onclick="loadTable({{ $i }})">{{ $i + 1 }}</i>
+@else
+<i class="  tab " onclick="loadTable({{ $i }})">{{ $i + 1 }}</i>
+@endif
 @endfor
     
  </ul>
