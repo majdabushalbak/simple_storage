@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
 
         // Return errors if credentials do not match
         return back()->withErrors([
-            'name' => 'The provided credentials do not match our records.',
+            'name' => __('auth.failed'),
         ]);
     }
 

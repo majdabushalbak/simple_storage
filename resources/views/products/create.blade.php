@@ -19,17 +19,17 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label">الاسم</label>
-                <input type="text" class="form-control" id="name" name="الاسم" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label">الوصف</label>
-                <textarea class="form-control" id="description" name="الوصف">{{ old('description') }}</textarea>
+                <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="quantity" class="form-label">الكمية</label>
-                <input type="number" class="form-control" id="quantity" name="الكمية" value="{{ old('quantity') }}">
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}">
             </div>
 
             <div class="mb-3">

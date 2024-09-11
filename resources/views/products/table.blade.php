@@ -9,12 +9,12 @@
     </thead>
     <tbody>
         @foreach($products as $product)
-            <tr  >
-               
+            <tr>
+
                     <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->name }}</td>
                     <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->description }}</td>
                     <td class="t-row" onclick="location.href='{{ route('products.show', $product->id) }}'">{{ $product->quantity }}</td>
-               
+
                 <td >
                     <div class="dropdown">
                         <button class="dropDownBtn  " style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,10 +28,10 @@
                                 @method('DELETE')
                                 <button type="submit" class=" dropdown-item text-danger">حذف</button>
                             </form>
-                        
+
                         </ul>
                       </div>
-                   
+
                 </td>
             </tr>
         @endforeach
