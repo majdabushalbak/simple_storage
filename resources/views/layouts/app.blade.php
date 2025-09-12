@@ -43,6 +43,9 @@
                     @endauth
                 </ul>
                 <ul class="navbar-nav mx-auto d-flex align-items-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">تصليحات</a>
+                    </li>
                     <a class="navbar-brand " href="{{ route('products.index') }}">
                         <img class="mx-4" src="{{ URL('Logo.svg') }}" alt="Logo"/>
 
@@ -50,9 +53,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
                     </li>
-
-
-
                 </ul>
             </div>
         </div>
