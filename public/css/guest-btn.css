@@ -1,0 +1,24 @@
+:root {
+    --main: hsl(342, 81%, 48%);
+    --lite: hsl(342, 81%, 60%);
+}
+
+/* Normal guest button style */
+.guest-btn {
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--main);  /* Use --gold for background color */
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    display: block;
+    width: 40%;
+}
+
+/* Hover effect for the guest button */
+.guest-btn:hover {
+    background-color: var(--lite);  /* Use --gold-lite for hover effect */
+}

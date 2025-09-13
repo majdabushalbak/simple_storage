@@ -14,10 +14,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
-    <link href="{{   asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{   asset('css/products-page.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/products-page.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +30,22 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ">
+                <ul class="navbar-nav"> <a class="navbar-brand " href="{{ route('products.index') }}">
+                        <img class="" src="{{ URL('Logo.svg') }}" alt="Logo" />
+
+                    </a></ul>
+
+                <ul class="navbar-nav  d-flex align-items-end">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">تصليحات</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto ms-1 ">
                     @auth
 
                         <form method="POST" action="{{ route('logout') }}" class="d-inline">
@@ -39,26 +54,13 @@
                         </form>
                         </li>
                     @else
-
                     @endauth
-                </ul>
-                <ul class="navbar-nav mx-auto d-flex align-items-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">تصليحات</a>
-                    </li>
-                    <a class="navbar-brand " href="{{ route('products.index') }}">
-                        <img class="mx-4" src="{{ URL('Logo.svg') }}" alt="Logo"/>
-
-                    </a>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    {{-- page content--}}
+    {{-- page content --}}
     <div class="page-container  mx-4 mx-lg-5 mt-5">
         @yield('content')
     </div>
@@ -73,30 +75,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-
         var availableTags = [];
 
         $.ajax({
-    method: "GET",
-    url: "/product-list",
-    success: function(response) {
-        $("#product-search").autocomplete({
-            source: response
+            method: "GET",
+            url: "/product-list",
+            success: function(response) {
+                $("#product-search").autocomplete({
+                    source: response
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
         });
-    },
-    error: function(xhr, status, error) {
-        console.error("AJAX Error:", status, error);
-    }
-});
 
 
-function startAutoComplete(availableTags) {
-    $("#product-search").autocomplete({
-        source: availableTags
-    });
-}
-
-        </script>
+        function startAutoComplete(availableTags) {
+            $("#product-search").autocomplete({
+                source: availableTags
+            });
+        }
+    </script>
 </body>
 
 </html>

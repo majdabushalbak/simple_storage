@@ -73,12 +73,15 @@ footer .social-media-links a:hover {
 
 /* Logo Image */
 .navbar-brand img {
-    max-height: 15dvh;
-    min-height: 70px;
+    max-height: 10dvh;
+    min-height: 50px;
+    margin: 0px;
     /* Adjust the logo size */
 }
 ul.navbar-nav {
     width: auto;
+    padding: 0px;
+    margin-left: 1rem;
 }
 nav {
     background-color: #000000;
@@ -86,8 +89,8 @@ nav {
 
 .nav-link {
     height: 10dvh;
-    min-height: 70px;
-
+    min-height: 50px;
+margin-left: 1rem;
     font-size: 1.3rem;
     white-space: nowrap;
     font-weight: bold;

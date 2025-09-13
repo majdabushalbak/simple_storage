@@ -31,8 +31,8 @@
         @endif
 
         @php
-            // Chunk products into groups of 50
-            $chunks = $products->chunk(50);
+            // Chunk products into groups of 20
+            $chunks = $products->chunk(20);
         @endphp
 
 </div>

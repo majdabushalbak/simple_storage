@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>اضافة فطعة جديد</h1>
+        <h1>اضافة قطعة جديد</h1>
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -37,7 +37,7 @@
                 <input type="file" class="form-control" id="image" name="image">
             </div>
 
-            <button type="submit" class="btn btn-success">اضافة فطعة</button>
+            <button type="submit" class="btn btn-success">اضافة قطعة</button>
         </form>
     </div>
 @endsection
