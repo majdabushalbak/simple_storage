@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products-page.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body>
@@ -42,7 +43,7 @@
                         <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">تصليحات</a>
+                        <a class="nav-link" href="{{ route('repairs.index') }}">تصليحات</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav me-auto ms-1 ">
@@ -97,6 +98,7 @@
             });
         }
     </script>
+    @livewireScripts
 </body>
 
 </html>

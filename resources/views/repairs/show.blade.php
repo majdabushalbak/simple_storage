@@ -1,72 +1,47 @@
 @extends('layouts.app')
-<title dir="rtl">@yield('title', 'show')</title>
 
 @section('content')
-    <div class="container">
-        <h1>{{ $product->name }}</h1>
+<div class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Car ID: {{ $repair->car_id }}</h1>
 
-        <!-- Display product image if it exists -->
-        @if($product->image)
-            <div class="mb-3">
-                <img src="{{ asset('storage/app/public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid" style="max-width: 300px;">
-            </div>
-        @endif
+    <div class="p-6">
+    <a href="{{ route('repairs.notes.create', $repair->id) }}"
+       class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow mb-4">
+       + Add Note
+    </a>
 
-        <p><strong>الوصف:</strong> {{ $product->description }}</p>
-
-        <!-- Display and update quantity dynamically -->
-        <p><strong>الكمية:</strong> <span id="product-quantity">{{ $product->quantity }}</span></p>
-
-        <div class="mb-3">
-            <button onclick="updateQuantity(1)" class="btn btn-success">+</button>
-
-
-
-            <button onclick="updateQuantity(-1)" class="btn btn-danger">-</button>
-
-
-
-        </div>
-
-        <a href="{{ route('products.index') }}" class="btn btn-secondary">عودة <i class="fa-solid fa-backward"></i></a>
-        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">تعديل</a>
-
-        <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this product?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">حذف</button>
-        </form>
-    </div>
-
-    <script>
-        function updateQuantity(change) {
-    let quantityElement = document.getElementById('product-quantity');
-    let currentQuantity = parseInt(quantityElement.innerText);
-
-    // Check if the current quantity is 0 and the change is -1
-    if (currentQuantity === 0 && change < 0) {
-        // Prevent further reduction if quantity is already 0
-        return;
-    }
-
-    // Update the quantity if the above condition is not met
-    fetch(`/products/{{ $product->id }}/update-quantity`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({
-            quantity: currentQuantity + change
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Update the quantity on the page
-        quantityElement.innerText = data.quantity;
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-    </script>
+    @if($repair->notes->count() > 0)
+        <table class="w-full border-collapse border mt-4">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border p-2">Note</th>
+                    <th class="border p-2">Status</th>
+                    <th class="border p-2">Cost</th>
+                    <th class="border p-2">Created At</th>
+                    <th class="border p-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($repair->notes as $note)
+                    <tr>
+                        <td class="border p-2">{{ $note->note }}</td>
+                        <td class="border p-2">{{ $note->status }}</td>
+                        <td class="border p-2">{{ $note->cost }}</td>
+                        <td class="border p-2">{{ $note->created_at->format('d/m/Y') }}</td>
+                        <td class="border p-2 space-x-2">
+                            <a href="{{ route('repairs.notes.edit', $note->id) }}" class="text-green-600">Edit</a>
+                            <form action="{{ route('repairs.notes.destroy', $note->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="text-red-600" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p class="text-gray-500 mt-4">No notes for this car yet.</p>
+    @endif
+</div>
 @endsection

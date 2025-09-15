@@ -1,50 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>تعديل</h1>
+<div class="container max-w-lg mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6 text-center">تعديل الملاحظة للسيارة: {{ $note->repair->car_id }}</h1>
 
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @if($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded mb-4">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-        <!-- Add enctype to handle file uploads -->
-        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+    <form action="{{ route('repairs.notes.update', $note->id) }}" method="POST" class="space-y-4">
+        @csrf
+        @method('PUT')
 
-            <div class="mb-3">
-                <label for="name" class="form-label">اسم القطعة </label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $product->name) }}">
-            </div>
+        <div>
+            <label for="note" class="block font-semibold mb-1">الملاحظة</label>
+            <textarea id="note" name="note" class="w-full border rounded p-2">{{ old('note', $note->note) }}</textarea>
+        </div>
 
-            <div class="mb-3">
-                <label for="description" class="form-label">الوصف</label>
-                <textarea class="form-control" id="description" name="description">{{ old('description', $product->description) }}</textarea>
-            </div>
+        <div>
+            <label for="status" class="block font-semibold mb-1">الحالة</label>
+            <select id="status" name="status" class="w-full border rounded p-2">
+                <option value="pending" {{ (old('status', $note->status)=='pending')?'selected':'' }}>قيد الانتظار</option>
+                <option value="in-progress" {{ (old('status', $note->status)=='in-progress')?'selected':'' }}>قيد التنفيذ</option>
+                <option value="completed" {{ (old('status', $note->status)=='completed')?'selected':'' }}>مكتمل</option>
+            </select>
+        </div>
 
-            <div class="mb-3">
-                <label for="quantity" class="form-label">الكمية</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity', $product->quantity) }}">
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">الصورة</label>
+        <div>
+            <label for="cost" class="block font-semibold mb-1">التكلفة</label>
+            <input type="number" step="0.01" id="cost" name="cost" value="{{ old('cost', $note->cost) }}"
+                   class="w-full border rounded p-2">
+        </div>
 
-                <!-- Display the current image if one exists -->
-                @if($product->image)
-                    <div class="mb-3">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Current Image" width="150">
-                    </div>
-                @endif
-<input type="file" class="form-control" id="image" name="image">
-            </div>
-            <button type="submit" class="btn btn-success">تحديث</button>
-        </form>
-    </div>
+        <button type="submit"
+                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition w-full">
+            حفظ التغييرات
+        </button>
+    </form>
+</div>
 @endsection
