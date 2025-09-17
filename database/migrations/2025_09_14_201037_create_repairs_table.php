@@ -13,7 +13,10 @@ return new class extends Migration
     {
      Schema::create('repairs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('car_id')->unique(); // one row per car
+            $table->string('car_id')->unique(); // one row per car
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

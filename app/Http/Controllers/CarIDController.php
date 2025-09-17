@@ -21,7 +21,10 @@ class CarIDController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'car_id' => 'required|numeric|unique:repairs,car_id',
+            'car_id' => 'required|string|unique:repairs,car_id',
+            'name'   => 'nullable|string',
+            'phone'  => 'nullable|string',
+            'type'   => 'nullable|string',
         ]);
 
         Repair::create($data);
@@ -46,16 +49,19 @@ class CarIDController extends Controller
         return view('repairs.editID', compact('repair'));
     }
 
-    public function update(Request $request, Repair $repair)
-    {
-        $data = $request->validate([
-            'car_id' => 'required|numeric|unique:repairs,car_id,' . $repair->id,
-        ]);
+  public function update(Request $request, Repair $repair)
+{
+    $data = $request->validate([
+        'car_id' => 'required|string|unique:repairs,car_id,' . $repair->id,
+        'name'   => 'nullable|string',
+        'phone'  => 'nullable|string',
+        'type'   => 'nullable|string',
+    ]);
 
-        $repair->update($data);
+    $repair->update($data);
 
-        return redirect()->route('repairs.index')->with('success', 'Car updated successfully');
-    }
+    return redirect()->route('repairs.index')->with('success', 'Car updated successfully');
+}
 
     public function destroy(Repair $repair)
     {

@@ -7,15 +7,25 @@ use App\Models\Repair;
 
 class SearchRepairs extends Component
 {
-    public $car_id = '';
+    public $searchValue = '';
 
     public function render()
     {
-        // If car_id is empty, show all repairs
-        $repairs = Repair::when($this->car_id != '', function($query) {
-            $query->where('car_id', $this->car_id);
-        })->latest()->get();
+        $repairs = Repair::query()
+            ->when($this->searchValue !== '', function ($query) {
+                $search = $this->searchValue;
+                $query->where(function ($q) use ($search) {
+                    $q->where('car_id', 'like', "%{$search}%")
+                      ->orWhere('phone', 'like', "%{$search}%")
+                      ->orWhere('name', 'like', "%{$search}%")
+                      ->orWhere('type', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-        return view('livewire.search-repairs', compact('repairs'));
+        return view('livewire.search-repairs', [
+            'repairs' => $repairs,
+        ]);
     }
 }

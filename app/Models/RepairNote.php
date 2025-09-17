@@ -11,7 +11,7 @@ class RepairNote extends Model
 
     protected $fillable = ['repair_id', 'note', 'status', 'cost'];
 
-    // Relationship: belongs to a repair (car)
+    // Each note belongs to a car
     public function repair()
     {
         return $this->belongsTo(Repair::class);

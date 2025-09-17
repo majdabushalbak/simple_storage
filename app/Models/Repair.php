@@ -9,11 +9,11 @@ class Repair extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['car_id'];
+    protected $fillable = ['car_id', 'name', 'phone', 'type'];
 
-   public function notes()
-{
-    return $this->hasMany(RepairNote::class);
-}
-
+    // One car has many notes
+    public function notes()
+    {
+        return $this->hasMany(RepairNote::class);
+    }
 }

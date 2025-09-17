@@ -18,10 +18,38 @@
     <form action="{{ route('repairs.storeID') }}" method="POST" class="space-y-4">
         @csrf
 
-      @csrf
-    <label for="car_id">Car ID:</label>
-    <input type="number" name="car_id" id="car_id" required>
-    <button type="submit">Add Car</button>
+        <div>
+            <label for="car_id" class="block font-semibold mb-1">رقم السيارة</label>
+            <input type="text" id="car_id" name="car_id"
+                   value="{{ old('car_id') }}"
+                   class="w-full border rounded p-2" required>
+        </div>
+
+        <div>
+            <label for="name" class="block font-semibold mb-1">الاسم</label>
+            <input type="text" id="name" name="name"
+                   value="{{ old('name') }}"
+                   class="w-full border rounded p-2">
+        </div>
+
+        <div>
+            <label for="phone" class="block font-semibold mb-1">رقم الهاتف</label>
+            <input type="text" id="phone" name="phone"
+                   value="{{ old('phone') }}"
+                   class="w-full border rounded p-2">
+        </div>
+
+        <div>
+            <label for="type" class="block font-semibold mb-1">النوع</label>
+            <input type="text" id="type" name="type"
+                   value="{{ old('type') }}"
+                   class="w-full border rounded p-2">
+        </div>
+
+        <button type="submit"
+                class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition w-full">
+            إضافة إصلاح
+        </button>
     </form>
 </div>
 @endsection
