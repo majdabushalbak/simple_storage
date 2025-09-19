@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products-page.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
 
@@ -55,7 +56,7 @@
     </nav>
 
     {{-- page content --}}
-    <div class="page-container mx-4 mx-lg-5 mt-5">
+    <div class="page-container mx-2 mx-sm-3 mx-md-4 mx-lg-5 mt-5">
 
         {{-- ✅ Flash Messages --}}
         @if (session('success'))

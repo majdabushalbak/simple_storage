@@ -146,41 +146,6 @@ li .user:hover {
     color: var(--gold);
 }
 
-ul.dropdown-menu {
-    left: -32px !important;
-}
 
-td,
-th {
-    text-align: center;
-    vertical-align: middle;
-}
-button {
-    border-radius: 0 !important;
-}
 
-td {
-    opacity: 1;
-    transition: opacity 0.25s ease-in-out;
-    -moz-transition: opacity 0.25s ease-in-out;
-    -webkit-transition: opacity 0.25s ease-in-out;
-}
-td.t-row:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
 
-.dropDownBtn {
-    background-color: transparent;
-    border-radius: 50%;
-    border: none;
-
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.dropDownBtn:hover {
-    background-color: hsla(0, 2%, 25%, 0.204);
-}

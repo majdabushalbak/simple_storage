@@ -1,6 +1,4 @@
-<div>
-     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
-<div class="p-4">
+   <div >
 
     <div class="mb-4">
         <label class="block mb-1 font-semibold">Search</label>
@@ -10,7 +8,7 @@
             placeholder="Search"
             class="border rounded p-2 w-full">
     </div>
-
+<div class="table-responsive shadow-wrapper">
     @if($repairs->count() > 0)
         <table class="contant-table">
             <thead>
@@ -30,13 +28,21 @@
                         <td>{{ $repair->name ?? '-' }}</td>
                         <td>{{ $repair->phone ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('repairs.show', $repair->id) }}">Show</a>
-                            <a href="{{ route('repairs.editID', $repair->id) }}">Edit</a>
-                            <form action="{{ route('repairs.destroyID', $repair->id) }}" method="POST" style="display:inline;">
+                             <span class="dropdown">
+                        <button class="dropDownBtn" style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu text-center">
+                            <a href="{{route('repairs.show', $repair->id) }}" class="dropdown-item">عرض</a>
+                            <a href="{{ route('repairs.editID', $repair->id) }}" class="dropdown-item">تعديل</a>
+                            <form action="{{ route('repairs.destroyID', $repair->id) }}" method="POST" onsubmit="return confirmDelete()">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick="return confirm('Are you sure?')">Delete</button>
+                                <button onclick="return confirm('Are you sure?')" class="dropdown-item text-danger">حذف</button>
                             </form>
+                        </ul>
+                             </span>
+                           
                         </td>
                     </tr>
                 @endforeach
@@ -47,3 +53,4 @@
     @endif
 </div>
 </div>
+

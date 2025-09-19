@@ -64,7 +64,7 @@
 
 
        <!-- Table Container -->
-       <div id="table-container">
+       <div  class="table-responsive shadow-wrapper" id="table-container">
         <!-- Initial table content -->
         @include('products.table', ['products' => $chunks->first()])
 
