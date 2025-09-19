@@ -28,12 +28,12 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        @endif
+        @endif --}}
 
         @php
             // Chunk products into groups of 20
             $chunks = $products->chunk(20);
-        @endphp --}}
+        @endphp
 
 </div>
 

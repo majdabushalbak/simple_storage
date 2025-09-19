@@ -9,19 +9,24 @@ class ProductController extends Controller
 {
 
     public function index(Request $request)
-    {
-        $query = $request->input('search');
+{
+    $query = $request->input('search');
 
-        if ($query) {
-            // Search for products by name
-            $products = Product::where('name', 'like', '%' . $query . '%')->get();
-        } else {
-            // Retrieve all products
-            $products = Product::all();
-        }
-
-        return view('products.index', compact('products'));
+    if ($query) {
+        $products = Product::where('name', 'like', '%' . $query . '%')->get();
+    } else {
+        $products = Product::all();
     }
+
+    $chunks = $products->chunk(20);
+
+    return view('products.index', [
+        'products' => $products,
+        'chunks' => $chunks
+    ]);
+}
+
+
 
 
     /**
