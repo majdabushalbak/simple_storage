@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,21 +22,18 @@
 <body>
     <nav class="navbar navbar-expand-lg pb-0" data-bs-theme="dark">
         <div class="container-fluid align-items-end">
-
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav"> <a class="navbar-brand " href="{{ route('products.index') }}">
+                <ul class="navbar-nav">
+                    <a class="navbar-brand " href="{{ route('products.index') }}">
                         <img class="" src="{{ URL('Logo.svg') }}" alt="Logo" />
+                    </a>
+                </ul>
 
-                    </a></ul>
-
-                <ul class="navbar-nav  d-flex align-items-end">
-
-
+                <ul class="navbar-nav d-flex align-items-end">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}">الصفحة الرئيسية</a>
                     </li>
@@ -46,15 +41,13 @@
                         <a class="nav-link" href="{{ route('repairs.index') }}">تصليحات</a>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav me-auto ms-1 ">
                     @auth
-
                         <form method="POST" action="{{ route('logout') }}" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-danger">تسجيل الخروج</button>
                         </form>
-                        </li>
-                    @else
                     @endauth
                 </ul>
             </div>
@@ -62,14 +55,23 @@
     </nav>
 
     {{-- page content --}}
-    <div class="page-container  mx-4 mx-lg-5 mt-5">
+    <div class="page-container mx-4 mx-lg-5 mt-5">
+
+        {{-- ✅ Flash Messages --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-flash">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-flash">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @yield('content')
     </div>
-
-
-
-
-
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -77,28 +79,22 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         var availableTags = [];
-
         $.ajax({
             method: "GET",
             url: "/product-list",
             success: function(response) {
-                $("#product-search").autocomplete({
-                    source: response
-                });
+                $("#product-search").autocomplete({ source: response });
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", status, error);
             }
         });
 
-
-        function startAutoComplete(availableTags) {
-            $("#product-search").autocomplete({
-                source: availableTags
-            });
-        }
+        // optional: auto-hide flash after 3s
+        setTimeout(() => {
+            document.querySelectorAll('.alert-flash').forEach(el => el.remove());
+        }, 5000);
     </script>
     @livewireScripts
 </body>
-
 </html>

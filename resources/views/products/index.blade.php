@@ -5,7 +5,7 @@
    إضافة قطعة
 </a>
     <div class="container py-0">
-       
+
 
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">
@@ -21,10 +21,10 @@
         </form>
     </div>
     <div >
-        
 
 
-        @if(session('success'))
+
+        {{-- @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
@@ -33,20 +33,20 @@
         @php
             // Chunk products into groups of 20
             $chunks = $products->chunk(20);
-        @endphp
+        @endphp --}}
 
 </div>
 
 
 <div class="wrapper my-5" role="group" aria-label="Categories">
-    
+
     <div class="icon"> <i id="left" class="fa-solid fa-angle-left"></i></div>
 
 
  <ul class="tabs-box">
         <!-- All Products Button -->
-       
-    
+
+
         <!-- Category Buttons -->
        @for ($i = 0; $i < $chunks->count(); $i++)
 @if ($i==0)
@@ -55,11 +55,11 @@
 <i class="  tab " onclick="loadTable({{ $i }})">{{ $i + 1 }}</i>
 @endif
 @endfor
-    
+
  </ul>
 
     <div class="icon"> <i id="right" class="fa-solid fa-angle-right"></i></div>
-   
+
 </div>
 
 

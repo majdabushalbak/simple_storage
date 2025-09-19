@@ -13,19 +13,18 @@ class SearchRepairs extends Component
     {
         $repairs = Repair::query()
             ->when($this->searchValue !== '', function ($query) {
-                $search = $this->searchValue;
-                $query->where(function ($q) use ($search) {
-                    $q->where('car_id', 'like', "%{$search}%")
-                      ->orWhere('phone', 'like', "%{$search}%")
-                      ->orWhere('name', 'like', "%{$search}%")
-                      ->orWhere('type', 'like', "%{$search}%");
+                $query->where(function ($q) {
+                    $q->where('car_id', 'like', '%' . $this->searchValue . '%')
+                      ->orWhere('phone', 'like', '%' . $this->searchValue . '%')
+                      ->orWhere('name', 'like', '%' . $this->searchValue . '%')
+                      ->orWhere('type', 'like', '%' . $this->searchValue . '%');
                 });
             })
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->get();
 
         return view('livewire.search-repairs', [
-            'repairs' => $repairs,
+            'repairs' => $repairs
         ]);
     }
 }

@@ -64,10 +64,19 @@ class CarIDController extends Controller
 }
 
     public function destroy(Repair $repair)
-    {
-        $repair->delete();
-        return redirect()->route('repairs.index')->with('success', 'Car deleted successfully');
+{
+    if ($repair->notes()->exists()) {
+        return redirect()
+            ->route('repairs.index')
+            ->with('error', 'Cannot delete this car because it has notes.');
     }
+
+    $repair->delete();
+
+    return redirect()
+        ->route('repairs.index')
+        ->with('success', 'Car deleted successfully');
+}
 
 
 
