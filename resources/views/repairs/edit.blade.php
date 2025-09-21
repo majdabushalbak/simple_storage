@@ -1,14 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container max-w-lg mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-6 text-center">
-        تعديل الملاحظة للسيارة: {{ $note->repair->car_id }}
+
+<style>
+    :root {
+        --gold: hsl(342, 81%, 48%);
+        --gold-lite: hsl(342, 81%, 60%);
+        --black: #000;
+        --white: #fff;
+    }
+
+    .gold-btn {
+        background-color: var(--gold);
+        color: var(--white);
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.375rem;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        text-align: center;
+    }
+
+    .gold-btn:hover {
+        background-color: var(--gold-lite);
+    }
+
+    .input-style, .textarea-style, .select-style {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.375rem;
+        background-color: var(--white);
+        color: var(--black);
+    }
+
+    .label-style {
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .error-box {
+        background-color: #fee2e2;
+        border: 1px solid #fca5a5;
+        color: #b91c1c;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-container {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        color: var(--gold);
+        text-align: start;
+    }
+</style>
+
+<div class="form-container">
+    <h1 class="page-title">
+        تعديل الملاحظة - السيارة: {{ $note->repair->car_id }}
     </h1>
 
     {{-- Validation Errors --}}
     @if($errors->any())
-        <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded mb-4">
+        <div class="error-box text-sm">
             <ul class="list-disc pl-6">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,18 +81,18 @@
         </div>
     @endif
 
-    <form action="{{ route('repairs.notes.update', $note->id) }}" method="POST" class="space-y-4">
+    <form action="{{ route('repairs.notes.update', $note->id) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
 
         <div>
-            <label for="note" class="block font-semibold mb-1">الملاحظة</label>
-            <textarea id="note" name="note" class="w-full border rounded p-2" required>{{ old('note', $note->note) }}</textarea>
+            <label for="note" class="label-style">الملاحظة</label>
+            <textarea id="note" name="note" rows="5" class="textarea-style" required>{{ old('note', $note->note) }}</textarea>
         </div>
 
         <div>
-            <label for="status" class="block font-semibold mb-1">الحالة</label>
-            <select id="status" name="status" class="w-full border rounded p-2" required>
+            <label for="status" class="label-style">الحالة</label>
+            <select id="status" name="status" class="select-style" required>
                 <option value="pending" {{ old('status', $note->status) == 'pending' ? 'selected' : '' }}>قيد الانتظار</option>
                 <option value="in-progress" {{ old('status', $note->status) == 'in-progress' ? 'selected' : '' }}>قيد التنفيذ</option>
                 <option value="completed" {{ old('status', $note->status) == 'completed' ? 'selected' : '' }}>مكتمل</option>
@@ -36,12 +100,12 @@
         </div>
 
         <div>
-            <label for="cost" class="block font-semibold mb-1">التكلفة</label>
-            <input type="number" step="0.01" id="cost" name="cost" value="{{ old('cost', $note->cost) }}" class="w-full border rounded p-2">
+            <label for="cost" class="label-style">التكلفة (بالريال)</label>
+            <input type="number" step="0.01" id="cost" name="cost" value="{{ old('cost', $note->cost) }}" class="input-style">
         </div>
 
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition w-full">
-            حفظ التغييرات
+        <button type="submit" class="gold-btn">
+            💾 حفظ التغيرات
         </button>
     </form>
 </div>

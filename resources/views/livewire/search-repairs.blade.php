@@ -22,11 +22,13 @@
             </thead>
             <tbody>
                 @foreach($repairs as $repair)
+
                     <tr>
-                        <td>{{ $repair->car_id }}</td>
-                        <td>{{ $repair->type ?? '-' }}</td>
-                        <td>{{ $repair->name ?? '-' }}</td>
-                        <td>{{ $repair->phone ?? '-' }}</td>
+                        
+                        <td onclick="location.href='{{route('repairs.show', $repair->id) }}'">{{ $repair->car_id }}</td>
+                        <td onclick="location.href='{{route('repairs.show', $repair->id) }}'">{{ $repair->type ?? '-' }}</td>
+                        <td onclick="location.href='{{route('repairs.show', $repair->id) }}'">{{ $repair->name ?? '-' }}</td>
+                        <td onclick="location.href='{{route('repairs.show', $repair->id) }}'">{{ $repair->phone ?? '-' }}</td>
                         <td>
                              <span class="dropdown">
                         <button class="dropDownBtn" style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
