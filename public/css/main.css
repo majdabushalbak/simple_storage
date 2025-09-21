@@ -147,5 +147,43 @@ li .user:hover {
 }
 
 
+/* note page */
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.custom-pagination .page {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.custom-pagination .page:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-pagination .page.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    pointer-events: none;
+}
+
+.custom-pagination .page.disabled {
+    color: #999;
+    border-color: #ddd;
+    pointer-events: none;
+}
 
 

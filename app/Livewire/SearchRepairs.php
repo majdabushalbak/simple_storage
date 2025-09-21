@@ -3,11 +3,23 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Repair;
 
 class SearchRepairs extends Component
 {
+    use WithPagination;
+
+    // Use Bootstrap styles for pagination
+    protected $paginationTheme = 'bootstrap';
+
     public $searchValue = '';
+
+    // Reset pagination when search input updates
+    public function updatingSearchValue()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
@@ -21,7 +33,7 @@ class SearchRepairs extends Component
                 });
             })
             ->latest()
-            ->get();
+            ->paginate(10);
 
         return view('livewire.search-repairs', [
             'repairs' => $repairs

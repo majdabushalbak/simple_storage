@@ -9,6 +9,6 @@ class RepairSeeder extends Seeder
 {
     public function run(): void
     {
-        Repair::factory()->count(50)->create(); // creates 50 random repairs
+        Repair::factory()->count(200)->create(); // creates 50 random repairs
     }
 }
