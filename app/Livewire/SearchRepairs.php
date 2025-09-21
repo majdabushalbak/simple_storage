@@ -10,12 +10,9 @@ class SearchRepairs extends Component
 {
     use WithPagination;
 
-    // Use Bootstrap styles for pagination
-    protected $paginationTheme = 'bootstrap';
-
     public $searchValue = '';
 
-    // Reset pagination when search input updates
+    // Reset to first page on search
     public function updatingSearchValue()
     {
         $this->resetPage();
@@ -24,19 +21,15 @@ class SearchRepairs extends Component
     public function render()
     {
         $repairs = Repair::query()
-            ->when($this->searchValue !== '', function ($query) {
-                $query->where(function ($q) {
-                    $q->where('car_id', 'like', '%' . $this->searchValue . '%')
-                      ->orWhere('phone', 'like', '%' . $this->searchValue . '%')
-                      ->orWhere('name', 'like', '%' . $this->searchValue . '%')
-                      ->orWhere('type', 'like', '%' . $this->searchValue . '%');
-                });
-            })
+            ->when($this->searchValue !== '', fn($q) =>
+                $q->where('car_id', 'like', "%{$this->searchValue}%")
+                  ->orWhere('phone', 'like', "%{$this->searchValue}%")
+                  ->orWhere('name', 'like', "%{$this->searchValue}%")
+                  ->orWhere('type', 'like', "%{$this->searchValue}%")
+            )
             ->latest()
             ->paginate(10);
 
-        return view('livewire.search-repairs', [
-            'repairs' => $repairs
-        ]);
+        return view('livewire.search-repairs', compact('repairs'));
     }
 }

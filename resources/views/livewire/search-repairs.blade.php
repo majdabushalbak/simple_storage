@@ -10,27 +10,39 @@
             class="border rounded p-2 w-full">
     </div>
 
+    <div class="custom-pagination-wrapper">
     <div class="custom-pagination">
-    @if ($repairs->onFirstPage())
-        <span class="page disabled">&laquo; Prev</span>
-    @else
-        <a href="{{ $repairs->previousPageUrl() }}" class="page">&laquo; Prev</a>
-    @endif
-
-    @foreach ($repairs->getUrlRange(1, $repairs->lastPage()) as $page => $url)
-        @if ($page == $repairs->currentPage())
-            <span class="page active">{{ $page }}</span>
+        {{-- Prev --}}
+        @if ($repairs->onFirstPage())
+            <span class="page disabled">&laquo; Prev</span>
         @else
-            <a href="{{ $url }}" class="page">{{ $page }}</a>
+            <button wire:click="previousPage" class="page">&laquo; Prev</button>
         @endif
-    @endforeach
 
-    @if ($repairs->hasMorePages())
-        <a href="{{ $repairs->nextPageUrl() }}" class="page">Next &raquo;</a>
-    @else
-        <span class="page disabled">Next &raquo;</span>
-    @endif
+        {{-- Pages --}}
+        @php
+            $start = max($repairs->currentPage() - 2, 1);
+            $end = min($repairs->currentPage() + 2, $repairs->lastPage());
+        @endphp
+
+        @for($page = $start; $page <= $end; $page++)
+            @if ($page == $repairs->currentPage())
+                <span class="page active">{{ $page }}</span>
+            @else
+                <button wire:click="gotoPage({{ $page }})" class="page">{{ $page }}</button>
+            @endif
+        @endfor
+
+        {{-- Next --}}
+        @if ($repairs->hasMorePages())
+            <button wire:click="nextPage" class="page">Next &raquo;</button>
+        @else
+            <span class="page disabled">Next &raquo;</span>
+        @endif
+    </div>
 </div>
+
+
 
     <!-- Table -->
     <div class="table-responsive shadow-wrapper">
