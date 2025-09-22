@@ -1,46 +1,62 @@
 <div>
+<link href="{{ asset('css/pagination-new.css') }}" rel="stylesheet">
+<div class="search-container">
+  
+   
+    <input
+      id="search-input"
+      wire:model.live="searchValue"
+      type="text"
+      placeholder="إبحث عن سيارة ..."
+      class="search-input"
+    >
+   <i class="mx-3 fa-solid fa-magnifying-glass"></i>
+</div>
 
-    <!-- Search Input -->
-    <div class="mb-4">
-        <label class="block mb-1 font-semibold">Search</label>
-        <input
-            wire:model.live="searchValue"
-            type="text"
-            placeholder="Search by رقم السيارة, العميل, الهاتف أو السيارة"
-            class="border rounded p-2 w-full">
-    </div>
 
-    <div class="custom-pagination-wrapper">
+   <div class="custom-pagination-wrapper">
     <div class="custom-pagination">
         {{-- Prev --}}
         @if ($repairs->onFirstPage())
-            <span class="page disabled">&laquo; Prev</span>
+            <span class="custom-page custom-arrow is-disabled">&laquo;</span>
         @else
-            <button wire:click="previousPage" class="page">&laquo; Prev</button>
+            <button wire:click="previousPage" class="custom-page custom-arrow">&laquo;</button>
         @endif
 
         {{-- Pages --}}
         @php
-            $start = max($repairs->currentPage() - 2, 1);
-            $end = min($repairs->currentPage() + 2, $repairs->lastPage());
+            $totalPages = $repairs->lastPage();
+            $currentPage = $repairs->currentPage();
+
+            // Always show 5 pages
+            $start = max($currentPage - 2, 1);
+            $end = $start + 4;
+
+            if ($end > $totalPages) {
+                $end = $totalPages;
+                $start = max($end - 4, 1);
+            }
         @endphp
 
-        @for($page = $start; $page <= $end; $page++)
+        @for ($page = $start; $page <= $end; $page++)
             @if ($page == $repairs->currentPage())
-                <span class="page active">{{ $page }}</span>
+                <span class="custom-page is-active">{{ $page }}</span>
             @else
-                <button wire:click="gotoPage({{ $page }})" class="page">{{ $page }}</button>
+                <button wire:click="gotoPage({{ $page }})" class="custom-page">{{ $page }}</button>
             @endif
         @endfor
 
         {{-- Next --}}
         @if ($repairs->hasMorePages())
-            <button wire:click="nextPage" class="page">Next &raquo;</button>
+            <button wire:click="nextPage" class="custom-page custom-arrow">&raquo;</button>
         @else
-            <span class="page disabled">Next &raquo;</span>
+            <span class="custom-page custom-arrow is-disabled">&raquo;</span>
         @endif
     </div>
 </div>
+
+
+
 
 
 
