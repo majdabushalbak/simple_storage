@@ -59,6 +59,10 @@
                 </thead>
                 <tbody>
                 @foreach($repairs as $repair)
+
+
+{{-- hiii --}}
+
     <tr onclick="window.location='{{ route('repairs.show', $repair->id) }}'"
         style="cursor: pointer;">
         <td>{{ $repair->car_id }}</td>
