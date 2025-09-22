@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+<link href="{{ asset('css/secandary-pages.css') }}" rel="stylesheet">
 @section('content')
-    <div class="container">
-        <h1>اضافة قطعة جديد</h1>
+    <div class="form-container">
+        <h1 class="page-title">اضافة قطعة جديد</h1>
 
         @if($errors->any())
-            <div class="alert alert-danger">
+            <div class="error-box">
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -18,26 +18,27 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label">الاسم</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                <label for="name" class="label-style">الاسم</label>
+                <input type="text" class="input-style" id="name" name="name" value="{{ old('name') }}">
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">الوصف</label>
-                <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+                <label for="description" class="label-style">الوصف</label>
+                <textarea class="textarea-style" id="description" name="description">{{ old('description') }}</textarea>
             </div>
 
             <div class="mb-3">
-                <label for="quantity" class="form-label">الكمية</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}">
+                <label for="quantity" class="label-style">الكمية</label>
+                <input type="number" class="input-style" id="quantity" name="quantity" value="{{ old('quantity') }}">
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">الصورة</label>
-                <input type="file" class="form-control" id="image" name="image">
+                <label for="image" class="label-style">الصورة</label>
+                <input type="file" class="input-style" id="image" name="image">
             </div>
 
-            <button type="submit" class="btn btn-success">اضافة قطعة</button>
+            <button type="submit" class="gold-btn">اضافة قطعة</button>
         </form>
     </div>
 @endsection
+

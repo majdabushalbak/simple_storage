@@ -16,7 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products-page.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+    
     @livewireStyles
 </head>
 

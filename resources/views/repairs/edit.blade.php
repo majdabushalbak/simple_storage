@@ -2,68 +2,7 @@
 
 @section('content')
 
-<style>
-    :root {
-        --gold: hsl(342, 81%, 48%);
-        --gold-lite: hsl(342, 81%, 60%);
-        --black: #000;
-        --white: #fff;
-    }
-
-    .gold-btn {
-        background-color: var(--gold);
-        color: var(--white);
-        padding: 0.6rem 1.2rem;
-        border-radius: 0.375rem;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        width: 100%;
-        text-align: center;
-    }
-
-    .gold-btn:hover {
-        background-color: var(--gold-lite);
-    }
-
-    .input-style, .textarea-style, .select-style {
-        width: 100%;
-        padding: 0.6rem 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 0.375rem;
-        background-color: var(--white);
-        color: var(--black);
-    }
-
-    .label-style {
-        font-weight: 600;
-        color: var(--black);
-        margin-bottom: 0.25rem;
-        display: block;
-    }
-
-    .error-box {
-        background-color: #fee2e2;
-        border: 1px solid #fca5a5;
-        color: #b91c1c;
-        padding: 0.75rem;
-        border-radius: 0.375rem;
-        margin-bottom: 1rem;
-    }
-
-    .form-container {
-        max-width: 640px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    .page-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-        color: var(--gold);
-        text-align: start;
-    }
-</style>
+<link href="{{ asset('css/secandary-pages.css') }}" rel="stylesheet">
 
 <div class="form-container">
     <h1 class="page-title">
