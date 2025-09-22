@@ -58,30 +58,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($repairs as $repair)
-                        <tr>
-                            <td>{{ $repair->car_id }}</td>
-                            <td>{{ $repair->type ?? '-' }}</td>
-                            <td>{{ $repair->name ?? '-' }}</td>
-                            <td>{{ $repair->phone ?? '-' }}</td>
-                            <td>
-                                <span class="dropdown">
-                                    <button class="dropDownBtn" style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-                                    <ul class="dropdown-menu text-center">
-                                        <a href="{{ route('repairs.show', $repair->id) }}" class="dropdown-item">عرض</a>
-                                        <a href="{{ route('repairs.editID', $repair->id) }}" class="dropdown-item">تعديل</a>
-                                        <form action="{{ route('repairs.destroyID', $repair->id) }}" method="POST" onsubmit="return confirmDelete()">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button onclick="return confirm('Are you sure?')" class="dropdown-item text-danger">حذف</button>
-                                        </form>
-                                    </ul>
-                                </span>
-                            </td>
-                        </tr>
-                    @endforeach
+                @foreach($repairs as $repair)
+    <tr onclick="window.location='{{ route('repairs.show', $repair->id) }}'"
+        style="cursor: pointer;">
+        <td>{{ $repair->car_id }}</td>
+        <td>{{ $repair->type ?? '-' }}</td>
+        <td>{{ $repair->name ?? '-' }}</td>
+        <td>{{ $repair->phone ?? '-' }}</td>
+        <td>
+            <span class="dropdown" onclick="event.stopPropagation();">
+                <button class="dropDownBtn" style="border-radius: 50% !important;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <ul class="dropdown-menu text-center">
+                    <a href="{{ route('repairs.show', $repair->id) }}" class="dropdown-item">عرض</a>
+                    <a href="{{ route('repairs.editID', $repair->id) }}" class="dropdown-item">تعديل</a>
+                    <form action="{{ route('repairs.destroyID', $repair->id) }}" method="POST" onsubmit="return confirmDelete()">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick="return confirm('Are you sure?')" class="dropdown-item text-danger">حذف</button>
+                    </form>
+                </ul>
+            </span>
+        </td>
+    </tr>
+@endforeach
+
                 </tbody>
             </table>
 
