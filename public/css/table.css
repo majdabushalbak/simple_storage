@@ -16,6 +16,7 @@ margin: 25px 0;}
     color: #ffffff;
     text-align: start;
     font-weight: bold;
+    text-align: center;
 }
 
 .contant-table th,
@@ -25,6 +26,7 @@ padding: 12px 15px;
 
 .contant-table tr{
     border-bottom: 1px solid #dddddd;
+    text-align: center;
 }
 
 .contant-table tr:nth-last-of-type(even){

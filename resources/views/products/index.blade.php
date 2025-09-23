@@ -10,7 +10,7 @@
         <!-- Search Form -->
         <form action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-center mb-4">
             <div class="input-group" style="max-width: 500px; position: relative;">
-                <input type="search" style="border-radius: 0; outline: none !important;" name="search" id="product-search" class="form-control" placeholder="إبحث عن قطعة ..." autocomplete="off">
+                <input type="search"  style="border-radius: 0; outline: none !important;" name="search" id="product-search" class="search-box form-control" placeholder="إبحث عن قطعة ..." autocomplete="off">
                 <button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
 
                 <!-- Suggestions dropdown -->

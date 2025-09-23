@@ -200,5 +200,9 @@ li .user:hover {
     padding: 8px 12px;
     color: #555;
 }
-
+.search-box:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 5px var(--gold-lite);
+  }
 

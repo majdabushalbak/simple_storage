@@ -6,7 +6,7 @@
 
 <div class="form-container">
     <h1 class="page-title">
-        تعديل الملاحظة - السيارة: {{ $note->repair->car_id }}
+        تعديل الحركة: 
     </h1>
 
     {{-- Validation Errors --}}
@@ -39,11 +39,11 @@
         </div>
 
         <div>
-            <label for="cost" class="label-style">التكلفة (بالريال)</label>
+            <label for="cost" class="label-style">التكلفة (شيقل)</label>
             <input type="number" step="0.01" id="cost" name="cost" value="{{ old('cost', $note->cost) }}" class="input-style">
         </div>
 
-        <button type="submit" class="gold-btn">
+        <button type="submit" class="gold-btn mt-3">
             💾 حفظ التغيرات
         </button>
     </form>

@@ -9,6 +9,12 @@
     gap: 0.5rem;
     flex-wrap: wrap;
 }
+.no-select {
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}
 
 .custom-page {
     all: unset;
@@ -16,7 +22,7 @@
     padding: 0.5rem 1rem;
     border: 1px solid var(--gold);
     border-radius: 0.1875rem; /* 3px */
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     background-color: transparent;
     color: var(--gold);

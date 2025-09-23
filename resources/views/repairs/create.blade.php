@@ -5,7 +5,7 @@
 <link href="{{ asset('css/secandary-pages.css') }}" rel="stylesheet">
 
 <div class="form-container">
-    <h1 class="page-title">إضافة ملاحظة جديدة - السيارة: {{ $repair->car_id }}</h1>
+    <h1 class="page-title">إضافة حركة جديدة ل {{ $repair->car_id }}</h1>
 
     @if($errors->any())
         <div class="error-box text-sm">
@@ -35,11 +35,11 @@
         </div>
 
         <div>
-            <label for="cost" class="label-style">التكلفة (بالريال)</label>
+            <label for="cost" class="label-style">التكلفة (شيقل)</label>
             <input type="number" step="0.01" id="cost" name="cost" value="{{ old('cost') }}" class="input-style">
         </div>
 
-        <button type="submit" class="gold-btn">➕ إضافة الملاحظة</button>
+        <button type="submit" class="gold-btn mt-3">➕ إضافة الحركة</button>
     </form>
 </div>
 @endsection

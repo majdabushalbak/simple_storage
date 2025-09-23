@@ -15,7 +15,7 @@
 
 
    <div class="custom-pagination-wrapper">
-    <div class="custom-pagination">
+    <div class="custom-pagination no-select">
         {{-- Prev --}}
         @if ($repairs->onFirstPage())
             <span class="custom-page custom-arrow is-disabled">&laquo;</span>
