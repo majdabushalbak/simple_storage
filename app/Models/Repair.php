@@ -9,8 +9,7 @@ class Repair extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['car_id', 'name', 'phone', 'type'];
-
+    protected $fillable = ['car_id', 'name', 'phone', 'type', 'image']; // ✅ must include image
     // One car has many notes
     public function notes()
     {

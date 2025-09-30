@@ -18,19 +18,25 @@ class CarIDController extends Controller
         return view('repairs.createID');
     }
 
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'car_id' => 'required|string|unique:repairs,car_id',
-            'name'   => 'nullable|string',
-            'phone'  => 'nullable|string',
-            'type'   => 'nullable|string',
-        ]);
+public function store(Request $request)
+{
+    $data = $request->validate([
+        'car_id' => 'required|string|unique:repairs,car_id',
+        'name'   => 'nullable|string',
+        'phone'  => 'nullable|string',
+        'type'   => 'nullable|string',
+        'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        Repair::create($data);
-
-        return redirect()->route('repairs.index')->with('success', 'Car added successfully');
+    // 🔹 Save the uploaded image
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('images', 'public');
     }
+
+    Repair::create($data);
+
+    return redirect()->route('repairs.index')->with('success', 'Car added successfully');
+}
 
 
 
@@ -50,19 +56,27 @@ class CarIDController extends Controller
     }
 
   public function update(Request $request, Repair $repair)
-{
-    $data = $request->validate([
-        'car_id' => 'required|string|unique:repairs,car_id,' . $repair->id,
-        'name'   => 'nullable|string',
-        'phone'  => 'nullable|string',
-        'type'   => 'nullable|string',
-    ]);
+    {
+        $data = $request->validate([
+            'car_id' => 'required|string|unique:repairs,car_id,' . $repair->id,
+            'name'   => 'nullable|string',
+            'phone'  => 'nullable|string',
+            'type'   => 'nullable|string',
+            'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $repair->update($data);
+        // If new image uploaded
+        if ($request->hasFile('image')) {
+            if ($repair->image) {
+                Storage::disk('public')->delete($repair->image);
+            }
+            $data['image'] = $request->file('image')->store('repairs', 'public');
+        }
 
-    return redirect()->route('repairs.index')->with('success', 'Car updated successfully');
-}
+        $repair->update($data);
 
+        return redirect()->route('repairs.index')->with('success', 'Car updated successfully');
+    }
     public function destroy(Repair $repair)
 {
     if ($repair->notes()->exists()) {

@@ -5,8 +5,8 @@
 
 
 <div class="container max-w-lg mx-auto p-6">
-   
-    
+
+
     <h1 class="text-xl font-bold mb-6 text-end ">إضافة سيارة</h1>
  <div class="mb-6"><br/></div>
     {{-- Validation Errors --}}
@@ -19,10 +19,12 @@
             </ul>
         </div>
     @endif
-                    
-    <form action="{{ route('repairs.storeID') }}" method="POST" class="space-y-4">
-        @csrf
 
+     <form action="{{ route('repairs.storeID') }}"
+          method="POST"
+          enctype="multipart/form-data"  {{-- 🔹 Important for image upload --}}
+          class="space-y-4">
+        @csrf
         <div>
             <label for="car_id" class="label-style"> رقم السيارة
 </label>
@@ -51,7 +53,14 @@
                    class="input-style">
         </div>
 
-       
+
+         {{-- 🔹 Image Upload --}}
+        <div>
+            <label for="image" class="label-style">صورة السيارة</label>
+            <input type="file" id="image" name="image"
+                   class="input-style"
+                   accept="image/*">
+        </div>
 
         <button type="submit" class="gold-btn w-full py-2 px-5 mt-4 rounded text-center font-semibold">
     إضافة

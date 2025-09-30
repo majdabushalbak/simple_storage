@@ -1,8 +1,8 @@
 <div>
 <link href="{{ asset('css/pagination-new.css') }}" rel="stylesheet">
 <div class="search-container">
-  
-   
+
+
     <input
       id="search-input"
       wire:model.live="searchValue"
